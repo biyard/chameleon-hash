@@ -8,26 +8,26 @@
 + 160-bits
 #+begin_src log
 Testing Chameleon Hash with 160 bits
-Time elapsed(Setup): 4817us
-Time elapsed(Hash): 4021us
-Time elapsed(Verification): 3883us
-Time elapsed(Finding Collision): 30us
-Time elapsed(Hash): 1678us
-Total time elapsed: 14481us
+Time elapsed(Setup): 1473us
+Time elapsed(Hash): 741us
+Time elapsed(Verification): 725us
+Time elapsed(Finding Collision): 10us
+Time elapsed(Hash): 1121us
+Total time elapsed: 4091us
 
 Testing Chameleon Hash with 1024 bits
-Time elapsed(Setup): 67315us
-Time elapsed(Hash): 153667us
-Time elapsed(Verification): 127109us
-Time elapsed(Finding Collision): 303us
-Time elapsed(Hash): 127200us
-Total time elapsed: 475660us
+Time elapsed(Setup): 103544us
+Time elapsed(Hash): 64826us
+Time elapsed(Verification): 56809us
+Time elapsed(Finding Collision): 104us
+Time elapsed(Hash): 83262us
+Total time elapsed: 308610us
 
 Testing Chameleon Hash with 2048 bits
-Time elapsed(Setup): 474271us
-Time elapsed(Hash): 771866us
-Time elapsed(Verification): 825460us
-Time elapsed(Finding Collision): 282us
-Time elapsed(Hash): 831100us
-Total time elapsed: 2903055us
+Time elapsed(Setup): 396065us
+Time elapsed(Hash): 390736us
+Time elapsed(Verification): 397945us
+Time elapsed(Finding Collision): 247us
+Time elapsed(Hash): 648850us
+Total time elapsed: 1833912us
 #+end_src
