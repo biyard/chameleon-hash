@@ -157,11 +157,10 @@ fn test_chameleon_hash(bits: usize) {
     );
     // println!("Chameleon hash: {:?}", chameleon_hash);
 
-    // let m1 = Generator::new_uint(chameleon_hash.q.bits() - 1);
-    // let r1 = Generator::new_uint(chameleon_hash.q.bits() - 1);
+    let msg_bits = chameleon_hash.q.bits() / 2;
 
-    let m1 = Generator::new_uint(159);
-    let r1 = Generator::new_uint(159);
+    let m1 = Generator::new_uint(msg_bits);
+    let r1 = Generator::new_uint(msg_bits);
 
     let t = time::SystemTime::now();
     let hash1 = chameleon_hash.hash(&m1, &r1);
@@ -181,7 +180,7 @@ fn test_chameleon_hash(bits: usize) {
         t.elapsed().unwrap().as_micros()
     );
 
-    let m2 = Generator::new_uint(chameleon_hash.q.bits() - 1);
+    let m2 = Generator::new_uint(msg_bits);
     let t = time::SystemTime::now();
     let r2 = chameleon_hash.find_collision(&m1, &r1, &m2);
     println!(
