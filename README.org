@@ -31,3 +31,19 @@ Time elapsed(Finding Collision): 247us
 Time elapsed(Hash): 648850us
 Total time elapsed: 1833912us
 #+end_src
+
+* Reproduce measurement
++ Debug-style measurement used by this code path
+#+begin_src sh
+make measure
+#+end_src
+
++ Optimized measurement with the same output format
+#+begin_src sh
+make measure-release
+#+end_src
+
++ Save optimized measurement log
+#+begin_src sh
+make measure-log
+#+end_src
