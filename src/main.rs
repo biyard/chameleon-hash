@@ -4,6 +4,10 @@ use num_bigint::{BigInt, ToBigUint};
 use num_primes::{BigUint, Generator};
 use num_traits::{One, Zero};
 
+fn elapsed_secs(start: time::SystemTime) -> f64 {
+    start.elapsed().unwrap().as_secs_f64()
+}
+
 /// Chameleon hash function parameters
 #[derive(Clone)]
 pub struct ChameleonHash {
@@ -151,10 +155,7 @@ fn test_chameleon_hash(bits: usize) {
     let start = time::SystemTime::now();
     let t = time::SystemTime::now();
     let chameleon_hash = ChameleonHash::new(bits);
-    println!(
-        "Time elapsed(Setup): {:?}us",
-        t.elapsed().unwrap().as_micros()
-    );
+    println!("Time elapsed(Setup): {:.6} sec", elapsed_secs(t));
     // println!("Chameleon hash: {:?}", chameleon_hash);
 
     let msg_bits = chameleon_hash.q.bits() / 2;
@@ -164,10 +165,7 @@ fn test_chameleon_hash(bits: usize) {
 
     let t = time::SystemTime::now();
     let hash1 = chameleon_hash.hash(&m1, &r1);
-    println!(
-        "Time elapsed(Hash): {:?}us",
-        t.elapsed().unwrap().as_micros()
-    );
+    println!("Time elapsed(Hash): {:.6} sec", elapsed_secs(t));
     // println!("Hash of (m1({}), r1({})): {}", m1, r1, hash1);
 
     let t = time::SystemTime::now();
@@ -175,32 +173,20 @@ fn test_chameleon_hash(bits: usize) {
         ChameleonHash::verify(chameleon_hash.public_keys(), &m1, &r1, &hash1),
         "failed to verify hash"
     );
-    println!(
-        "Time elapsed(Verification): {:?}us",
-        t.elapsed().unwrap().as_micros()
-    );
+    println!("Time elapsed(Verification): {:.6} sec", elapsed_secs(t));
 
     let m2 = Generator::new_uint(msg_bits);
     let t = time::SystemTime::now();
     let r2 = chameleon_hash.find_collision(&m1, &r1, &m2);
-    println!(
-        "Time elapsed(Finding Collision): {:?}us",
-        t.elapsed().unwrap().as_micros()
-    );
+    println!("Time elapsed(Finding Collision): {:.6} sec", elapsed_secs(t));
 
     let t = time::SystemTime::now();
     let hash2 = chameleon_hash.hash(&m2, &r2);
-    println!(
-        "Time elapsed(Hash): {:?}us",
-        t.elapsed().unwrap().as_micros()
-    );
+    println!("Time elapsed(Hash): {:.6} sec", elapsed_secs(t));
 
     // println!("Hash of (m2({}), r2({})): {}", m2, r2, hash2);
 
-    println!(
-        "Total time elapsed: {:?}us",
-        start.elapsed().unwrap().as_micros()
-    );
+    println!("Total time elapsed: {:.6} sec", elapsed_secs(start));
 
     assert_eq!(hash1, hash2, "Collision failed!");
     println!("");
